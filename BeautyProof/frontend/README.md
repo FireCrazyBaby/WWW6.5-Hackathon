@@ -1,3 +1,12 @@
-# Welcome to your Lovable project
+# Frontend
 
-TODO: Document your project here
+This folder contains the BeautyProof frontend application built with Vite + TypeScript + Tailwind CSS.
+
+## Run locally
+
+npm install
+npm run dev
+
+## Build
+
+npm run build
