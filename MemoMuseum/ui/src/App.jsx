@@ -1,3 +1,4 @@
+import Landing from './Landing'; 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
@@ -17,6 +18,7 @@ const textMap = { teal: "text-teal-500", pink: "text-pink-500", purple: "text-pu
 
 export default function App() {
   const [init, setInit] = useState(false);
+  const [showLanding, setShowLanding] = useState(true); // 默认打开先显示 Landing
   const [theme, setTheme] = useState('dark'); 
   const [currentSpace, setCurrentSpace] = useState('personal'); 
   const [personalView, setPersonalView] = useState('timeline');
@@ -345,6 +347,10 @@ export default function App() {
   const isPublic = currentSpace === 'public';
 
   // ================= 🎨 UI 终极渲染 =================
+  if (showLanding) {
+    return <Landing onEnterApp={() => setShowLanding(false)} />;
+  }
+  
   return (
     <div className={`h-screen w-screen overflow-hidden flex flex-col font-sans transition-all duration-700 ${isLight ? 'bg-[#fdfbf7] text-slate-800' : 'bg-[#020617] text-slate-100'}`}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap'); body { font-family: 'Quicksand', sans-serif; } .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px;} .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(150,150,150,0.3); border-radius: 10px; } @keyframes marquee { 0% { transform: translateX(100%); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(-100%); opacity: 0; } } .animate-marquee { animation: marquee linear infinite; }`}</style>
